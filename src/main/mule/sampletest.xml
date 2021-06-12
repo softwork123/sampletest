@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></mule>
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="12f23217-35a4-4a55-9acf-bfb4289b78b7" >
+		<http:listener-connection host="0.0.0.0" port="3030" />
+	</http:listener-config>
+	<flow name="sampletestFlow" doc:id="3bd20690-bd98-4793-9435-474267300ed1" >
+		<http:listener doc:name="Listener" doc:id="d3bcc436-911c-4389-8877-94f51131f606" config-ref="HTTP_Listener_config" path="/welcome"/>
+		<logger level="INFO" doc:name="Logger" doc:id="eab07796-b86e-414b-aa49-4ec6139bcc3a" />
+		<set-payload value="welcom to test deploy anypoint studio " doc:name="Set Payload" doc:id="5623768a-0f1e-4c5c-92ca-43504829968f" />
+		<logger level="INFO" doc:name="Logger" doc:id="ce471a1d-9809-4bd7-99f6-c9f6ecc658d0" message="exit log"/>
+	</flow>
+</mule>
